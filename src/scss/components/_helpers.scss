@@ -1,0 +1,118 @@
+// Utilitários ------------------------------------
+
+// Cor texto ------------------------------------
+
+
+
+
+
+// Gradiente Fundo ------------------------------------
+
+.purple-blue-bg {
+  background-image: var(--gradient-purple-blue);
+}
+.blue-green-bg {
+  background-image: var(--gradient-blue-green);
+}
+.orange-purple-bg {
+  background-image: var(--gradient-orange-purple);
+}
+
+// Cor Fundo ------------------------------------
+
+.bg-blue-01{
+  background-color: var(--blue-01);
+}
+.bg-blue-02{
+  background-color: var(--blue-02);
+}
+.bg-blue-03{
+  background-color: var(--blue-03);
+}
+.bg-blue-04{
+  background-color: var(--blue-04);
+}
+
+.bg-azul {
+  background-color: var(--md-sys-color-secondary-light);
+}
+.bg-green {
+  background-color: var(--quaternary-color);
+}
+.bg-gray {
+  background-color: #eff1f2;
+}
+.bg-orange {
+  background-color: var(--md-sys-color-tertiary-light);
+}
+
+// IMG ------------------------------------
+
+.img--round {
+  border-radius: $border-radius-lg;
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.img--circle {
+  @extend .img--round;
+  border-radius: 50%;
+}
+
+.img--purple-shadow {
+  box-shadow: 0px 0px 15px rgba(87, 88, 227, 0.15);
+  border: 2px solid rgba(87, 88, 227, 0.15);
+}
+
+.round-lg {
+  border-radius: $border-radius-lg;
+}
+
+.circle-m {
+  width: 166px;
+  height: 166px;
+  object-fit: cover;
+  object-position: center;
+}
+
+// Flex ALinhamento ------------------------------------
+
+.flex--column {
+  flex-direction: column;
+  display: flex;
+}
+
+.flex--align-start {
+  align-items: start;
+  display: flex;
+}
+
+.flex--align-center {
+  align-items: center;
+  display: flex;
+}
+
+.flex--justify-center {
+  justify-content: center;
+  display: flex;
+}
+.flex--justify-between {
+  justify-content: space-between;
+  display: flex;
+}
+.flex--justify-end {
+  justify-content: end;
+  display: flex;
+}
+
+.flex--column-reverse {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.flex--align-end {
+  display: flex;
+  align-items: end;
+}

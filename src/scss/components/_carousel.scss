@@ -1,0 +1,99 @@
+
+// Carousel ------------------------------------
+
+.carousel-01 {
+    --carousel-height: 430px;
+    --carousel-item-height: 430px;
+    height: var(--carousel-height) !important;
+
+    position: relative;
+    color: $text-color;
+
+    border-radius: 18px;
+  
+  
+    & > .card {
+      box-shadow: none;
+      border: 2px solid rgba(87, 88, 227, 0.15);
+    }
+  
+    .carousel-fixed-item {
+      display: flex;
+      justify-content: flex-end;
+      a {
+        padding: 6px;
+        cursor: pointer;
+        color: $text-color;
+      }
+      a:hover {
+        background-color: var(--md-ref-palette-primary95);
+      }
+    }
+    .carousel-item {
+      padding-bottom: 32px;
+      .row {
+        align-items: center;
+        height: 100%;
+        @include mobile {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+      .img--round {
+        // border-radius: 0;
+        object-fit: cover;
+        width: 100%;
+        @include mobile {
+
+          max-height: 200px;
+        }
+      }
+    }
+    .previous,
+    .next {
+      cursor: pointer;
+    }
+    .indicators {
+      pointer-events: none;
+      left: 24px;
+      right: auto;
+      z-index: 3;
+      bottom: 10px !important;
+      .indicator-item.active {
+        background-color: var(--md-sys-color-primary);
+      }
+      .indicator-item {
+        background-color: var(--md-ref-palette-neutral90);
+      }
+    }
+  
+    @include mobile {
+      --carousel-height: 650px;
+      --carousel-item-height: 650px;
+    }
+  }
+  
+  .carousel.carousel-slider .carousel-fixed-item.with-indicators {
+    bottom: 24px;
+    right: 24px;
+  }
+  
+  // Carousel para imagens altas
+  .carousel-02{
+    --carousel-height: 450px;
+    --carousel-item-height: 450px;
+   
+    @extend .carousel-01;
+    img{
+      min-height: 100%;
+    }
+    @include mobile {
+      --carousel-height: 940px;
+      --carousel-item-height: 940px;
+    }
+  }
+  
+
+  .carousel-03{
+    @extend .carousel-01;
+  }

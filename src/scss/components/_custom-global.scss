@@ -1,0 +1,72 @@
+// @import "../materialize/components/global";
+
+// Utilitários de margin e padding responsivos
+// Exemplo: mt-5-tablet, mt-2-mobile
+// Observação: Quando o site entra no tamanho tablet, o fontsize diminui um pouco, logo a medidas dos espaçamentos serão reduzidas um pouco.
+
+$breakpoint-mobile: $small-screen;
+$breakpoint-tablet: $medium-screen;
+
+// Media queries for tablet and below
+@media (max-width: $breakpoint-tablet) {
+  @each $property, $shortcut in $spacing-shortcuts {
+    @each $name, $value in $spacing-values {
+      // All direction spacing
+      .#{$shortcut}-#{$name}-tablet {
+        #{$property}: $value !important;
+      }
+      // (t, b, r, l) spacing
+      @each $direction, $suffix in $spacing-directions {
+        .#{$shortcut}#{$suffix}-#{$name}-tablet {
+          #{$property}-#{$direction}: $value !important;
+        }
+      }
+      // x spacing
+      @if $spacing-horizontal != null {
+        .#{$shortcut}#{$spacing-horizontal}-#{$name}-tablet {
+          #{$property}-left: $value !important;
+          #{$property}-right: $value !important;
+        }
+      }
+      // y spacing
+      @if $spacing-vertical != null {
+        .#{$shortcut}#{$spacing-vertical}-#{$name}-tablet {
+          #{$property}-top: $value !important;
+          #{$property}-bottom: $value !important;
+        }        
+      }
+    }
+  }
+}
+
+// Media queries for mobile and below
+@media (max-width: $breakpoint-mobile) {
+  @each $property, $shortcut in $spacing-shortcuts {
+    @each $name, $value in $spacing-values {
+      // All direction spacing
+      .#{$shortcut}-#{$name}-mobile {
+        #{$property}: $value !important;
+      }
+      // (t, b, r, l) spacing
+      @each $direction, $suffix in $spacing-directions {
+        .#{$shortcut}#{$suffix}-#{$name}-mobile {
+          #{$property}-#{$direction}: $value !important;
+        }
+      }
+      // x spacing
+      @if $spacing-horizontal != null {
+        .#{$shortcut}#{$spacing-horizontal}-#{$name}-mobile {
+          #{$property}-left: $value !important;
+          #{$property}-right: $value !important;
+        }
+      }
+      // y spacing
+      @if $spacing-vertical != null {
+        .#{$shortcut}#{$spacing-vertical}-#{$name}-mobile {
+          #{$property}-top: $value !important;
+          #{$property}-bottom: $value !important;
+        }        
+      }
+    }
+  }
+}

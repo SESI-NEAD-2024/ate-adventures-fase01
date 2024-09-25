@@ -1,0 +1,25 @@
+// Footer ------------------------------------
+
+footer {
+  @include tablet {
+    padding: 0;
+  }
+  background-color: var(--blue-02);
+  padding: map-get($spacing-values, "60");
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  @include tablet {
+    padding: map-get($spacing-values, "60");
+    .container {
+      flex-direction: column;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      div {
+        padding: 8px 8px;
+      }
+    }
+  }
+}

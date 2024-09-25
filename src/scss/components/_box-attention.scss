@@ -1,0 +1,62 @@
+.box-attention {
+  border-radius: 4px;
+  padding: 0px 50px;
+  border: 2px solid rgba(87, 88, 227, 0.15);
+  background-color: (var(--md-ref-palette-neutral95));
+  background: linear-gradient(#f5ffe8, #ccd6bf);
+  box-shadow: 0px -3px 0px 0px #babbc8 inset, 0px 3px 0px 0px #ffffff99 inset;
+  border: 2px solid var(--brown);
+
+  &--blue {
+    background-color: var(--md-ref-palette-secondary90);
+  }
+  &--image {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    .box-icon {
+     
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 64px;
+      min-width: 64px;
+      height: 64px;
+      background-color: var(--yellow);
+      border: 2px solid var(--brown);
+      box-shadow: 3px 3px 0px 0px #3b2027,
+        0px -3px 0px 0px var(--yellow-dark) inset,
+        0px 3px 0px 0px var(--yellow-light) inset;
+
+      border-radius: 4px;
+
+      img {
+        max-width: 40px;
+        @include mobile{
+          max-width: 20px;
+
+          
+        }
+      }
+
+      @include mobile{
+        min-width: 40px;
+        height: 40px;
+        max-height: 40px;
+        margin-right: 8px !important; 
+
+        
+      }
+      
+    }
+  }
+  @include tablet {
+    padding: 18px 24px;
+  }
+  @include mobile {
+    padding: 16px 8px;
+  }
+}
+

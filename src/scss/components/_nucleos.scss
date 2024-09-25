@@ -1,0 +1,101 @@
+
+// NUCLEOS ------------------------------------
+.nucleos {
+    // background-image: url("../img/0-nucleos.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  
+    position: relative;
+    background-color: var(--blue-03);
+    background-position: center center;
+    transition: background-image 0.5s ease-in-out;
+    min-height: 590px;
+  
+    .mask-top {
+      background-image: url("../img/nucleos-section.png");
+      background-repeat: repeat-x;
+      background-position: left top;
+      height: 80px;
+      position: absolute;
+      top: 0;
+  
+      right: 0;
+      left: 0;
+      z-index: 1;
+      margin-top: -3px;
+    }
+  
+    .mask-bottom {
+      background-image: url("../img/nucleos-section-bottom.png");
+      background-repeat: repeat-x;
+      background-position: left bottom;
+      height: 80px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+      margin-bottom: -3px;
+    }
+  
+    .filter {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      backdrop-filter: grayscale(90%);
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+    }
+    & div {
+      transition: all 0.3s ease-out;
+    }
+    .nucleos-menu {
+      li {
+        margin-bottom: 24px;
+        transition: all 0.3s ease-out;
+        position: relative;
+      }
+  
+      li:not(.display1) {
+        font-weight: 700;
+        font-family: $font-02;
+        font-size: $h2-fontsize;
+        color: var(--blue-01);
+      }
+      li.display1::before {
+        content: ".";
+        display: block;
+        position: absolute;
+        left: -24px;
+        top: -16px;
+        @include mobile {
+          font-size: $h2-fontsize;
+        }
+      }
+      li:hover {
+        cursor: pointer;
+        color: var(--yellow);
+        text-shadow: 2px 2px 0px var(--brown);
+        -webkit-text-stroke: 2px var(--brown);
+      }
+  
+      ul {
+        list-style: none;
+        @include mobile {
+          margin: 0;
+          padding: 0;
+        }
+      }
+      @include mobile {
+        transform: scale(0.5);
+      }
+    }
+  }
+  

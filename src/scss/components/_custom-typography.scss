@@ -1,0 +1,97 @@
+html {
+  // line-height: 1.5;
+
+  // Responsividade de coisas relacionadas a REM
+  @media only screen and (min-width: 0) {
+    font-size: 13.5px;
+  }
+
+  @media only screen and (min-width: $medium-screen-up) {
+    font-size: 16px;
+  }
+
+  font-family: $font-stack;
+  color: $text-color;
+}
+
+body {
+  background-color: var(--md-sys-color-background);
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+blockquote {
+  // font-family: $font-stack;
+  color: var(--brown);
+}
+b {
+  font-weight: 700;
+}
+
+.display1 {
+  font-size: $display1-fontsize;
+}
+
+.display1,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  margin: 0;
+  font-family: $font-02;
+}
+
+h3 {
+  font-family: $font-03;
+}
+
+.display1,
+h1 {
+  color: var(--yellow);
+  text-shadow: 2px 2px 0px var(--brown);
+  -webkit-text-stroke: 2px var(--brown);
+  // text-stroke: 2px var(--brown);
+}
+
+@include mobile{
+  .display1 {
+    font-size: 3rem;
+  }
+  h1 {
+    font-size: 2.6rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+
+
+$display1-fontsize: 4.0625rem; // 65px
+$h1-fontsize: 2.9375rem; // 47px
+$h2-fontsize: 2.6875rem; // 43px
+$h3-fontsize: 1.875rem; // 30px
+$h4-fontsize: 1.5rem; // 24px
+$h5-fontsize: 1.125rem; // 18px
+$h6-fontsize: 1.15rem; // 22px
+$default-fontsize: 1.125rem;
+
+
+
+p {
+  line-height: 150%;
+  font-size: $default-fontsize;
+}

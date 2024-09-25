@@ -1,0 +1,25 @@
+.customCollection {
+  padding: 0;
+    li {
+      display: flex;
+      padding: 0 map-get($spacing-values, "5");
+      border-radius: 10px;
+
+      .circle {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        position: relative;
+        margin: map-get($spacing-values, "4") map-get($spacing-values, "4") map-get($spacing-values, "4") 0;
+      }
+      p:not(.customCollection__title) {
+        font-size: $default-fontsize;
+      }
+      @include mobile {
+
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+      }
+    }
+  }

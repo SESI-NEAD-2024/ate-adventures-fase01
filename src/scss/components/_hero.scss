@@ -1,0 +1,43 @@
+#hero {
+   
+  height: 70vh;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center top;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../img/sky-01.webp");
+
+  // @include mobile {
+  //   // background-image: url("../img/Hero-s.webp");
+  //   background-image: linear-gradient(rgba(209, 54, 49, 0), #5757e3d6),
+  //     url("../img/Hero-s.webp");
+  // }
+  // @include tablet {
+  //   height: 80vh;
+
+  // }
+  // @include tablet-only {
+  //   color: red;
+  //   background-image: linear-gradient(rgba(209, 54, 49, 0), #5757e3d6),
+  //     url("../img/Hero-m.webp");
+  // }
+  // @include desktop {
+  //   background-image: url("../img/sky-01.webp");
+
+  // }
+
+  .container > div{
+    margin-top: 40vh;
+    @include mobile{
+      margin-top: 20vh;
+
+    }
+  }
+  @include mobile{
+    height: 89vh;
+
+  }
+}

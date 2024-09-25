@@ -1,0 +1,99 @@
+// Navbar
+.navbar-fixed {
+  height: 0 !important;
+}
+nav {
+  --navbar-height: 120px;
+  --navbar-height-mobile: 80px;
+  box-shadow: none;
+  background-color: unset;
+
+  .nav-wrapper {
+    background: linear-gradient(
+      180deg,
+      rgba(11, 11, 77, 0.4) 0%,
+      rgba(5, 116, 170, 0.45) 50%,
+      rgba(0, 212, 255, 0) 100%
+    );
+  }
+
+  .container {
+    @include mobile {
+      width: 85%;
+    }
+  }
+
+  .progress {
+    margin-top: 32px;
+    border-radius: 0;
+    height: 16px;
+    background-image: linear-gradient(#f5ffe8, #ccd6bf);
+    border: 2px solid var(--brown);
+    box-shadow: 0px -3px 0px 0px #babbc8 inset, 0px 3px 0px 0px #ffffff99 inset;
+    border-radius: 6px;
+    position: relative;
+    z-index: 3;
+    overflow: visible;
+    @include mobile {
+      margin-top: 20px;
+      height: 14px;
+
+    }
+    
+  }
+
+  .nav-info {
+    width: 90%;
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+    @include mobile {
+      width: 100%;
+
+      img {
+        max-width: 100px !important;
+      }
+
+      & > div {
+        img {
+          max-width: 12px !important;
+          height: 100%;
+          width: 100% !important;
+        }
+        h4 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+.determinate {
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px 0px #3b2027,
+    0px -3px 0px 0px var(--yellow-dark) inset,
+    0px 3px 0px 0px var(--yellow-light) inset;
+
+  background-color: var(--yellow) !important;
+  background-image: none;
+
+  border-radius: 10px;
+
+  transition: width 0.3s;
+  position: relative;
+}
+.determinate::after {
+  position: absolute;
+  top: -10px;
+  right: -15px;
+  z-index: 4;
+  content: "";
+  background-image: url("../img/heart.png");
+  display: block;
+  width: 35px;
+  background-size: contain;
+  height: 32px;
+  background-repeat: no-repeat;
+  
+}

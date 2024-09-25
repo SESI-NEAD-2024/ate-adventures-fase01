@@ -1,0 +1,369 @@
+@import "materialize/materialize.scss";
+
+// MY COMPONENTS ------------------------------------
+
+// Navbar
+@import "components/_navbar.scss";
+
+// Hero
+@import "components/_hero.scss";
+
+// Concluir
+@import "components/concluir";
+
+// Box Attention
+@import "components/box-attention";
+
+// Footer
+@import "components/footer";
+
+// Helpers
+@import "components/helpers";
+
+@import "components/loading";
+
+// Geral ------------------------------------
+
+:root {
+  --navbar-height: 70px;
+}
+
+// Font Icons
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 40;
+}
+
+// Icones Material Design
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+u {
+  padding-bottom: 1px;
+  border-bottom: 3px solid var(--md-sys-color-tertiary);
+  text-decoration: none;
+}
+
+.btn {
+  &-large {
+    border-radius: 9px;
+    padding-top: 3px;
+  }
+  border-radius: 9px;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+// Container
+.container {
+  max-width: 1180px;
+  width: 90%;
+}
+.container--medium {
+  margin: 0 auto;
+  max-width: 780px;
+  width: 90%;
+}
+
+// Para o menu não cobrir o elemento
+.scrollspy {
+  scroll-margin-top: 100px;
+}
+
+.scale-transition.scale-out {
+  height: 0 !important;
+  opacity: 0;
+  transition: all 0.2s;
+}
+.scale-transition.scale-in {
+  height: auto !important;
+  opacity: 1;
+}
+
+body::-webkit-scrollbar {
+  width: 18px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+  border-radius: 0px;
+  background: rgb(226, 225, 222); /* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--yellow); /* color of the scroll thumb */
+  border-radius: 8px; /* roundness of the scroll thumb */
+  border: 3px solid var(--brown); /* creates padding around scroll thumb */
+  width: 10px;
+}
+
+// ------------------------------------
+// Tratamento Aula específica
+// ------------------------------------
+
+#iframePage {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.circle {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+body {
+  background-color: var(--blue-02);
+overflow-x: hidden;
+  cursor: url("../img/core/cursor.svg"), auto;
+}
+
+.pointer {
+  cursor: url("../img/core/pointer.svg"), pointer !important;
+}
+
+// QUEM É O ATE? ---------------------------------- --
+
+#ate {
+  .ate-bg-01 {
+    margin-top: -40px;
+    background-image: url("../img/particles.webp"),
+      url("../img/divider-01.webp");
+    background-position: 10% 35%, 100% 80%;
+    background-repeat: no-repeat, no-repeat;
+    .box-attention {
+      position: relative;
+      z-index: 3;
+    }
+    @include tablet {
+      margin-top: 0px;
+    }
+    @include mobile {
+      margin-top: 24px;
+    }
+  }
+  .ate-bg-02 {
+    background-color: var(--blue-03);
+    position: relative;
+    z-index: 1;
+    margin-top: -50px;
+  }
+
+  #my-accordion {
+    max-height: 500px !important;
+    max-width: 100% !important;
+
+    .as-mask {
+      width: 100% !important;
+      border-radius: 3px !important;
+    }
+    .as-panel {
+      border-radius: 3px !important;
+      border: 2px solid var(--brown);
+      box-shadow: 3px 3px 0px 0px #3b2027;
+      img {
+        border-radius: 1px !important;
+      }
+    }
+  }
+}
+
+.characters {
+  flex-wrap: wrap;
+
+  &-item {
+    background-color: var(--yellow);
+    background-image: linear-gradient(#f5ffe8, #ccd6bf);
+    border: 2px solid var(--brown);
+    box-shadow: 0px -3px 0px 0px #babbc8 inset, 0px 3px 0px 0px #ffffff99 inset;
+
+    padding: 60px 20px;
+    border-radius: 4px;
+
+    width: 100%;
+    max-width: 165px;
+
+    transition: all 0.3s;
+
+    @include mobile {
+      max-width: 130px;
+      margin-bottom: 24px;
+      padding: 40px 20px;
+    }
+  }
+  &-selected {
+    background-color: var(--yellow);
+    background-image: none;
+    box-shadow: 6px 6px 0px 0px #3b2027,
+      0px -3px 0px 0px var(--yellow-dark) inset,
+      0px 3px 0px 0px var(--yellow-light) inset;
+  }
+}
+
+.icons-reveal {
+  .box-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 105px;
+    height: 105px;
+    min-width: 105px;
+    min-height: 105px;
+    background-color: var(--yellow);
+    background-image: linear-gradient(#f5ffe8, #ccd6bf);
+    border: 2px solid var(--brown);
+    box-shadow: 0px -3px 0px 0px #babbc8 inset, 0px 3px 0px 0px #ffffff99 inset;
+
+    border-radius: 4px;
+
+    transition: all 0.3s;
+    img {
+      max-width: 40px;
+    }
+
+    &:hover {
+      background-color: var(--yellow);
+      background-image: linear-gradient(#f5ffe800, #ccd6bf00);
+
+      box-shadow: 3px 3px 0px 0px #3b2027,
+        0px -3px 0px 0px var(--yellow-dark) inset,
+        0px 3px 0px 0px var(--yellow-light) inset;
+      cursor: pointer;
+    }
+  }
+  .flex--justify-center {
+    @include mobile {
+      flex-wrap: wrap;
+    }
+  }
+}
+.tip > p {
+  color: #fff !important;
+  font-size: 13.5px !important;
+  font-family: $font-stack;
+}
+
+.star-bg {
+  background-position: center center;
+  background-repeat: repeat-x;
+  background-image: url("../img/star-bg.webp");
+}
+
+// ESTRUTURA ORGANIZACIONAL ------------------------------------
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-20px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
+
+.question-img {
+  transform: translatey(0px);
+  animation: float 2.5s ease-in-out infinite;
+}
+
+// NUCLEOS ------------------------------------
+@import "components/nucleos";
+
+// NITE ------------------------------------
+#nite {
+  .nite-bg-01 {
+    .plus {
+      justify-content: end;
+
+      @include mobile {
+        justify-content: center;
+      }
+    }
+  }
+  .nite-bg-02 {
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../img/sky-02.webp");
+  }
+}
+
+// PRÉ JOGO ------------------------------------
+#pre-game {
+  background-image: url("../img/blocks-base-03.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.video-box {
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // width: 100%;
+
+  position: relative;
+
+  background-color: var(--yellow);
+  border: 2px solid var(--brown);
+  box-shadow: 3px 3px 0px 0px #3b2027, 0px -3px 0px 0px var(--yellow-dark) inset,
+    0px 3px 0px 0px var(--yellow-light) inset;
+  border-radius: 4px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+
+  .video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    transition: all 0.3s;
+  }
+  .video-play:hover {
+    filter: brightness(0.8);
+    cursor: pointer;
+  }
+
+  @include mobile {
+    padding: 0.8rem;
+  }
+  iframe {
+    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 500px !important;
+    min-height: 500px !important;
+
+    @include mobile {
+      min-height: 250px !important;
+    }
+  }
+}
+
+.game-divisor {
+  width: 100%;
+}
+
+// ----------------------------------------------------------
+// Para ficar por último
+@import "components/introducao-game";
+
+
+#game-frame{
+  #game-iframe{
+    width: 100%;
+    height: 85vh;
+  }
+}

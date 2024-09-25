@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Quem é o ATE?" />
+    <meta name="author" content="SESI EAD" />
+    <title>FASE 1 | ATE Adventures</title>
+    <link rel="icon" type="image/png" href="src/img/core/Favicon.webp" />
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://use.typekit.net/hgj6bzh.css" />
+
+    <!-- CSS -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="src/css/main.css"
+      media="screen"
+    />
+
+    <!-- Vue DEV MODE -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+
+    
+
+    <!-- Vue PROD MODE -->
+    <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
+    <!-- Vue Router -->
+    <script src="https://unpkg.com/vue-router@4.2.0/dist/vue-router.global.js"></script>
+    
+
+    <!-- Scorm JS -->
+    <script src="src/js/scorm/APIWrapper.js" defer></script>
+    <script src="src/js/scorm/SCOFunctions.js" defer></script>
+    <script src="src/js/scorm/scorm-app.js" defer></script>
+
+
+    <!-- Materialize JS -->
+    <script
+      type="text/javascript"
+      src="src/js/materialize/materialize.js"
+      defer
+    ></script>
+
+    <!-- AOS JS -->
+    <script
+      type="text/javascript"
+      src="src/js/aos-master/aos.js"
+      defer
+    ></script>
+
+    <!-- App.js JS customizado aqui -->
+    <script type="module" src="src/js/app.js"></script>
+
+    <!-- AOS Animation -->
+    <link type="text/css" rel="stylesheet" href="src/css/aos.css" />
+
+    <!-- Accordion-slider -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/accordion-slider-js/build/accordion-slider.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/accordion-slider-js/build/accordion-slider.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="app">
+      <!-- loading ---------------------------------- -->
+      <div id="loading">
+        <div class="spinner"></div>
+      </div>
+      <div id="content">
+      <router-view></router-view>
+      <nav class="bg-blue-500 text-white p-4">
+        <router-link class="mr-4" to="/">capa</router-link>
+        <router-link class="mr-4" to="/introducao">Introducao</router-link>
+        <router-link class="mr-4" to="/lesson">Lesson</router-link>
+        <router-link class="mr-4" to="/curso-fase-01">Curso</router-link>
+
+      </nav>
+          </div>
+    </div>
+  </body>
+</html>

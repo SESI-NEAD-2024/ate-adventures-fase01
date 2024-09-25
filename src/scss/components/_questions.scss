@@ -1,0 +1,91 @@
+// Questões ------------------------------------
+// Aqui os a visualização do radio não é o input em si
+.question-radio {
+  [type="radio"]:not(:checked) + span,
+  [type="radio"]:checked + span {
+    
+    
+  }
+  [type="radio"]:checked + span {
+    color: var(--md-sys-color-primary);
+
+  }
+
+
+  .question-result {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    color: #fff;
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 50%;
+      margin-right: 24px;
+    }
+    &__correto {
+      background-color: #46d86f;
+    }
+    &__incorreto {
+      background-color: #ef4a4a;
+    }
+  }
+
+  &--dark * {
+    color: #fff;
+    border-color: #fff;
+    [type=radio]:not(:checked) + span:before, [type=radio]:not(:checked) + span:after {
+      border-color: #fff;
+      
+    }
+    [type="radio"]:checked + span {
+      color: var(--quaternary-color);
+  
+    }
+    [type=radio]:checked + span:before, [type=radio]:checked + span:after {
+      background-color: var(--quaternary-color);
+      
+    }
+
+    
+  }
+}
+
+
+.question-in-order {
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  input[type="number"] {
+    width: 50px;
+    margin-right: 16px;
+    height: 24px;
+    margin-bottom: 8px;
+  }
+}
+
+
+.question-matriz{
+  table{
+    table-layout: fixed;
+  }
+  th{
+    background-color: var(--quaternary-color);
+  }
+  td{
+    background-color: #fff;
+    text-align: center;
+  }
+  .clicavel{
+    cursor: pointer;
+  }
+
+  th, td{
+    border: 1px solid #B9B9B9;
+  }
+}
