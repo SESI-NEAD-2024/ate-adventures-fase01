@@ -50,9 +50,9 @@ gulp etapa-2
 ```
 
 
-## 🤝 Autor
+## 🤝 Qualquer dúvida, entre em contato:
 
-Qualquer dúvida, entre em contato:
+
 
 <table>
   <tr>
