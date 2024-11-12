@@ -4,47 +4,65 @@ export default {
       formData: {
         Jogador_Nome: null,
         Personagem: null,
+        student_name: null,
+        student_id: null,
       },
       submitted: false,
       debugWithoutScorm: false,
     };
   },
   mounted() {
-    console.log("Componente INTRODUCAO");
-    console.log(FIELDS.suspendData);
+    console.log("introducao.js");
   },
   methods: {
+    // Ao enviar formulário
     handleSubmit() {
       this.submitted = true;
 
+      // Se formulário enviado e todos os campos preenchidos
       if (
         this.submitted &&
         this.formData.Jogador_Nome != null &&
         this.formData.Personagem != null
+        // scormAPI
       ) {
-        this.saveToScorm();
-        // Direciona para o curso
-        this.$router.push("/curso-fase-01");
+        if (typeof scormAPI !== "undefined" && scormAPI) {
+
+          var interval = setInterval(() => {
+
+            if (LMSIsInitialized()) {
+              // Quando tudo estiver carregado e pronto para funcionar
+
+
+              clearInterval(interval);
+              console.log('getScormData(FIELDS.studentId)', getScormData(FIELDS.studentId));
+              console.log('getScormData(FIELDS.studentName)', getScormData(FIELDS.studentName));
+              // Identificador de pessoa
+              this.formData.student_name = getScormData(FIELDS.studentName);
+              this.formData.student_id = getScormData(FIELDS.studentId);
+              this.saveLocalStorage();
+              // Direciona para o curso
+              this.$router.push("/curso-fase-01");
+            }
+          });
+        } else {
+
+          this.saveLocalStorage();
+          // Direciona para o curso
+          this.$router.push("/curso-fase-01");
+        }
       }
     },
 
-    /**
-     * Salva os dados do formulário no SCORM
-     * Usa função do arquivo 'scorm-app.js'
-     * @private
-     */
-    saveToScorm() {
+    saveLocalStorage() {
       // Salva dados em formato JSON
       let save = JSON.stringify(this.formData);
       if (!this.debugWithoutScorm) {
-        
-        saveSuspendData(save);
-        console.log(FIELDS.suspendData);
-        console.log(getScormData(FIELDS.suspendData));
+        localStorage.setItem("Game", save);
       }
-
-
     },
+
+    // Customizar card do personagem ao selecionar
     selectPersonagem(event, id) {
       // Remove classe de todos
       let items = document.getElementsByClassName("characters-item");
@@ -66,9 +84,8 @@ export default {
     },
   },
 
-  
-  template: //html
-  `
+  //html
+  template: `
    <div class="introducao-game  flex--align-center flex--justify-center">
     <div class="container--medium center-align">
       <h1 class="mb-40">ESCOLHA SEU PERSONAGEM</h1>

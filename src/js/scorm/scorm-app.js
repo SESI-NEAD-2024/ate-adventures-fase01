@@ -1,4 +1,6 @@
 /*******************************************************************************
+ * **Arquivo específico para o curso do ATE, alterei a finishTopic() para sempre concluir ao apertar o botão, esmo após concluído**
+ * 
  * Arquivo no qual manipulamos as funções dos arquivos APIWrapper.js e SCOFunctions.js,
  * adicionando nossa funcionalidade
  *
@@ -26,6 +28,7 @@ const FIELDS = {
   lessonStatus: "cmi.core.lesson_status",
   suspendData: "cmi.suspend_data",
   studentName: "cmi.core.student_name",
+  studentId: "cmi.core.student_id",
   scoreRaw: "cmi.core.score.raw",
 };
 
@@ -33,6 +36,8 @@ var studentName;
 var suspendData;
 var studentScore;
 var topicIsFinished;
+
+
 
 /*******************************************************************************
  *
@@ -198,7 +203,7 @@ function finishButton() {
 function finishTopic() {
   console.log("função finishTopic");
   // Se o curso ainda não foi concluído, salva o status do curso e conclui o tópico
-  if (topicIsFinished != LESSON_STATUS.completed) {
+  // if (topicIsFinished != LESSON_STATUS.completed) {
     setScormData(FIELDS.lessonStatus, LESSON_STATUS.completed, true);
 
     console.log("getScormData(FIELDS.lessonStatus):");
@@ -213,7 +218,7 @@ function finishTopic() {
     if (scormAPI) {
       unloadPage();
     }
-  }
+  // }
 }
 
 /**

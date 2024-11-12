@@ -9,6 +9,16 @@ import GameFase01 from "./game-fase-01.js";
 
 export default {
   name: "CursoFase01",
+  data() {
+    return {
+      scormData: null,
+      stopNavbar: null,
+      stopNavBarHeight: 0,
+      // Posição Atual do Scroll
+      // let winScroll = window.scrollY + window.innerHeight;
+      winScroll: 0,
+    };
+  },
   components: {
     Navbar,
     Hero,
@@ -18,10 +28,24 @@ export default {
     GameFase01,
   },
   mounted() {
+    console.log("curso-fase-01.js");
 
-    console.log('curso-fase-01.js');
+    // AOS Animation -------------------------------------
+    AOS.init({
+      delay: 50,
+    });
 
+    window.addEventListener("load", () => {
+      AOS.refresh(); // Força a recalculação das animações após o carregamento da página
 
+      // Scroll -----------------------------------------------------
+      // Quando a janela encostar neste elemento, completa a barra de progresso 100%
+      this.stopNavbar = document.querySelector(".stop-navbar");
+      this.stopNavBarHeight = this.getAbsoluteOffsetTop(this.stopNavbar);
+    });
+    // Precisei repetir para carregar, o evento load parece não carregar aqui
+    this.stopNavbar = document.querySelector(".stop-navbar");
+    this.stopNavBarHeight = this.getAbsoluteOffsetTop(this.stopNavbar);
 
     // Toolltip
     var tooltipes = document.querySelectorAll(".tooltipped");
@@ -29,50 +53,45 @@ export default {
       // specify options here
     });
 
-    // scrollspy -----------------------------------------------------
-    // Para a ancoragem de links de funcionar de modo animado
-    var elems = document.querySelectorAll(".scrollspy");
-    var instances = M.ScrollSpy.init(elems, {
-      scrollOffset: -600,
-      // specify options here
-    });
-
     // Adiciona o evento de scroll
     window.addEventListener("scroll", this.handleScroll);
 
-    // AOS Animation -------------------------------------
-    AOS.init({
-      delay: 50,
-    });
-    
-    window.addEventListener('load', function() {
-      AOS.refresh(); // Força a recalculação das animações após o carregamento da página
-    });
-    
-
     // AccordionSlider
-    let mySlider = new AccordionSlider( '#my-accordion', {
-      width: '100%',
-      height: '60vh',
+    let mySlider = new AccordionSlider("#my-accordion", {
+      width: "100%",
+      height: "60vh",
       autoplay: true,
       panelDistance: 16,
       startPanel: 0,
       responsive: true,
       mouseWheel: false,
       breakpoints: {
-        800: {visiblePanels: 3, orientation: 'vertical', height: '55vh' },
-        500: {visiblePanels: 3, orientation: 'vertical', height: '55vh'}
-      }
+        800: { visiblePanels: 3, orientation: "vertical", height: "55vh" },
+        500: { visiblePanels: 3, orientation: "vertical", height: "55vh" },
+      },
     });
-    
 
+    this.setupCharacter();
 
-    
+    // Scroll -----------------------------------------------------
+
+    // Usa o throttle na função handleScroll e vincula ao evento de scroll
+    const throttledScroll = this.throttle(this.handleScroll, 150); // Ajuste o delay conforme necessário
+    window.addEventListener("scroll", throttledScroll);
   },
   methods: {
-
-
     // Barra de progresso Scroll -----------------------------------------------------
+
+    // Função de throttle
+    throttle(callback, delay) {
+      let lastCall = 0;
+      return function (...args) {
+        const now = new Date().getTime();
+        if (now - lastCall < delay) return;
+        lastCall = now;
+        return callback(...args);
+      };
+    },
 
     /**
      * Atualiza a barra de progresso e exibe a porcentagem rolada.
@@ -82,27 +101,71 @@ export default {
      * @return {void} Esta função não retorna nenhum valor.
      */
     handleScroll() {
-      var winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      var height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      var scrolled = (winScroll / height) * 100;
+      this.winScroll = window.scrollY;
 
+      let pageHeight = document.body.scrollHeight;
+
+      // console.log('winScroll', winScroll);
+      // console.log('pageHeight', pageHeight);
+
+      // Transforma valor em porcentagem de 1 a 100
+      var scrolled = Math.min(
+        (this.winScroll / (this.stopNavBarHeight - window.innerHeight)) * 100,
+        100
+      );
+
+      // Atualiza a barra de progresso
       var barras = document.querySelectorAll(".determinate");
 
       barras.forEach((barra) => {
         barra.style.width = scrolled + "%";
       });
 
-      // document.querySelector(".progress-box__number").innerHTML =
-      //   Math.round(scrolled) + "%";
+      // Para sumir/aparecer a barra de progresso quando está prestes a aparecer o jogo
+      // Para não verificar toda hora
+
+      if (scrolled >= 97) {
+        document.querySelector(".navbar-fixed").classList.add("scale-out");
+        document.querySelector(".navbar-fixed").classList.remove("scale-in");
+      } else {
+        document.querySelector(".navbar-fixed").classList.add("scale-in");
+        document.querySelector(".navbar-fixed").classList.remove("scale-out");
+      }
+
+      // console.log("this.winScroll", this.winScroll);
+      // console.log("scrolled", scrolled);
+
+      // console.log("stopNavBarHeight", this.stopNavBarHeight);
     },
 
+    getAbsoluteOffsetTop(element) {
+      // Posição do elemento na viewport
+      const rect = element.getBoundingClientRect();
+      return rect.top + window.scrollY + window.innerHeight;
+    },
+
+    getLocalStorage() {
+      const lGame = localStorage.getItem("Game");
+      return lGame ? JSON.parse(lGame) : false;
+    },
+
+    setupCharacter() {
+      if (this.getLocalStorage()) {
+        this.scormData = this.getLocalStorage();
+        let characters = document.querySelectorAll(".characters-item");
+        characters[Number(this.scormData.Personagem) - 1].classList.add(
+          "characters-selected"
+        );
+      }
+    },
   },
-  
-  template://html
-   `
+  beforeDestroy() {
+    // Remove o listener de scroll ao destruir o componente
+    window.removeEventListener("scroll", this.handleScroll);
+  },
+
+  //html
+  template: `
    <!-- Navbar ---------------------------------- -->
         <navbar></navbar>
 
@@ -114,7 +177,7 @@ export default {
               alt="ATE Adventures"
               style="max-width: 778px; width: 100%"
             />
-            <h2 class="mt-80">MÓDULO 1</h2>
+            <h2 class="mt-80">FASE 1</h2>
             <br />
             <span class="display1">QUEM É O ATE?</span>
           </div>
@@ -130,11 +193,9 @@ export default {
         <div id="ate" class="">
           <div class="ate-bg-01">
             <div class="container">
-              <h1 data-aos="fade-up" class="center-align mb-60">
-                QUEM É O ATE?
-              </h1>
+
               <!-- ACCORDION SLIDER -->
-              <div class="accordion-slider mb-80-tablet" id="my-accordion">
+              <div class="accordion-slider mt-96 mb-80-tablet" id="my-accordion">
                 <div class="as-panels">
                   <!-- Panel 1 -->
                   <div class="as-panel">
@@ -198,7 +259,7 @@ export default {
               </p>
               <div class="characters flex--justify-between">
                 <div
-                  class="characters-item characters-selected flex--align-center flex--justify-center"
+                  class="characters-item flex--align-center flex--justify-center"
                 >
                   <img src="src/img/player-01.svg" alt="Player" lang="lazy" />
                 </div>
@@ -249,7 +310,7 @@ export default {
                     <div class="flex--justify-center">
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mb-24-mobile"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-01"
@@ -283,7 +344,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mr-0-mobile"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-02"
@@ -317,7 +378,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24"
+                        class="box-icon tooltipped"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-03"
@@ -352,7 +413,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mr-0-mobile mb-24"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-04"
@@ -392,7 +453,7 @@ export default {
                     <div class="flex--justify-center">
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mb-24-mobile"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-05"
@@ -433,7 +494,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mr-0-mobile"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-06"
@@ -463,7 +524,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-07"
@@ -495,7 +556,7 @@ export default {
 
                       <!-- Tooltip -->
                       <div
-                        class="box-icon tooltipped pointer mr-24 mr-0-mobile"
+                        class="box-icon tooltipped pointer"
                         data-html="true"
                         data-position="bottom"
                         data-tooltip-id="tooltip-content-08"
@@ -617,24 +678,8 @@ export default {
                 <div class="col m1 s12"></div>
                 <div class="col m10 s12">
                   <div class="video-box pointer">
-                    <div class="video-play">
-                      <img
-                        src="src/img/video-play.svg"
-                        alt="Play"
-                        loading="lazy"
-                        style="width: 100%"
-                      />
-                    </div>
-                    <!-- <iframe
-                      width="560"
-                      height="315"
-                      src="https://www.youtube.com/embed/EI8bCjIkhpo?si=OHAHat-cANPKHP1y"
-                      title="YouTube video player"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-                    ></iframe> -->
+                    
+                    <iframe src="https://prezi.com/p/embed/U2D1vMP6TisE2UVmEUAY/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>
                   </div>
                 </div>
               </div>
@@ -644,19 +689,19 @@ export default {
         </div>
 
         <!-- PRÉ JOGO ------------------------------------>
-        <div id="pre-game" class="pt-80 center-align flex--justify-center">
+        <div id="pre-game" class="pt-80 center-align flex--justify-center stop-navbar">
           <div>
             <div class="container">
               <div style="max-width: 600px; margin: auto">
                 <h3 class="white-text">
-                  Nessa primeira fase, você aprendeu sobre a rotina do ATE, a
+                  Nesta primeira fase, você aprendeu sobre a rotina do ATE, a
                   Gerência de Educação Básica (GEB) e sobre o papel do NITE.
                 </h3>
-                <h4 class="white-text my-40">
+                <h4 class="white-text my-40 ">
                   Agora, responda às perguntas do jogo a seguir.
                 </h4>
                 <div
-                  class="mb-40 box-attention box-attention--image left-align"
+                  class="mb-40 box-attention box-attention--image left-align "
                 >
                   <div data-aos="fade-right" class="box-icon mr-24">
                     <img src="src/img/medal.gif" alt="Medalha" loading="lazy" />
@@ -685,13 +730,15 @@ export default {
           </div>
         </div>
 
+
+        <game-fase-01></game-fase-01>
+
         <!-- Footer ---------------------------------- -->
         <app-footer></app-footer>
 
 
         
-         <game-fase-01></game-fase-01>
+         
 
    `,
-
 };

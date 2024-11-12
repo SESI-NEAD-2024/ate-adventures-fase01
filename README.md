@@ -1,11 +1,8 @@
-![versão](https://img.shields.io/static/v1?label=ATE&message=v1.0.1&color=%23f44336)
 
-
-# Projeto de aula SCORM
+# Projeto de aula SCORM + GDevelop
 
 ### 📟 Tecnologias Principais
 - Vue CDN
-- Vue Router
 
 Use os arquivos para desenvolvimento e no final gere a build para fazer upload no LMS.
 
@@ -30,14 +27,26 @@ Para instalar, siga estas etapas na raíz do projeto:
 ```
 npm install
 ```
-Havendo o arquivo *package.json*, as dependências serão instaladas corretamente deixando o projeto pronto para fazer a build.
+Obs.: Havendo o arquivo *package.json*, as dependências serão instaladas corretamente deixando o projeto pronto para fazer a build.
 
-## ☕ Gerando Build e pacote scorm
-Gera a pasta *dist* e dentro, estará o pacote SCORM zipado para upload no LMS.
+## ☕ Gerando Build
+Gera o diretório *dist/scorm_open* com os arquivos prontos para se tornarem um pacote SCORM
 Na raíz do projeto:
 
 ```
-gulp
+gulp etapa-1
+```
+
+## Gerando pacote SCORM
+*ATENÇÃO!*
+
+Copie o cole a pasta GDevelop para o diretório dist/src, pois não é possível fazer essa cópia automaticamente via gulp.
+
+Compacta todos os arquivos da pasta scorm_open deixando pronto o pacote SCORM.
+Execute após copiar e colar a pasta GDevelop como dito acima:
+
+```
+gulp etapa-2
 ```
 
 

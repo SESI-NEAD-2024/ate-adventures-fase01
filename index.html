@@ -23,19 +23,15 @@
     <!-- Vue DEV MODE -->
     <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
 
-    
-
     <!-- Vue PROD MODE -->
     <script src="https://unpkg.com/vue@3.3.4/dist/vue.global.js"></script>
     <!-- Vue Router -->
     <script src="https://unpkg.com/vue-router@4.2.0/dist/vue-router.global.js"></script>
-    
 
     <!-- Scorm JS -->
     <script src="src/js/scorm/APIWrapper.js" defer></script>
     <script src="src/js/scorm/SCOFunctions.js" defer></script>
     <script src="src/js/scorm/scorm-app.js" defer></script>
-
 
     <!-- Materialize JS -->
     <script
@@ -75,15 +71,8 @@
         <div class="spinner"></div>
       </div>
       <div id="content">
-      <router-view></router-view>
-      <nav class="bg-blue-500 text-white p-4">
-        <router-link class="mr-4" to="/">capa</router-link>
-        <router-link class="mr-4" to="/introducao">Introducao</router-link>
-        <router-link class="mr-4" to="/lesson">Lesson</router-link>
-        <router-link class="mr-4" to="/curso-fase-01">Curso</router-link>
-
-      </nav>
-          </div>
+        <router-view></router-view>
+      </div>
     </div>
   </body>
 </html>

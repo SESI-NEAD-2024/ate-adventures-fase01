@@ -1,0 +1,52 @@
+// Container do componente
+#game-frame {
+  background-color: var(--rose);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 8%;
+
+  // Iframe do jogo
+  #game-iframe {
+    width: 100%;
+    aspect-ratio: 1024 / 614; // define a proporção do iframe
+    max-width: 900px; // respeita o limite máximo
+     // respeita o limite máximo
+    z-index: 2;
+  }
+
+  // Mensagem enquanto jogo não carrega
+  #iframe-callback {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // Moldura do jogo
+  #game-wrapper {
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 98%;
+    max-width: 1050px;
+    aspect-ratio: 1235 / 824;
+    pointer-events: none;
+
+    @include mobile {
+      display: none !important;
+    }
+  }
+
+  @include tablet {
+    padding: 8%;
+  }
+
+  @include mobile {
+    padding: 24px 8px;
+  }
+}

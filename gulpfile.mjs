@@ -1,3 +1,5 @@
+// Atualizado em 31/10/2024
+
 // Instanciando módulos
 import gulp from "gulp";
 import { src, dest } from "gulp";
@@ -19,6 +21,9 @@ import imagemin, { gifsicle, mozjpeg, optipng, svgo } from "gulp-imagemin";
 import { deleteAsync } from "del";
 import zip from "gulp-zip";
 import path from "path";
+
+
+
 
 /**
  * Exclui todos os arquivos e diretórios do diretório 'dist'
@@ -130,7 +135,9 @@ gulp.task("buildImg", () => {
  * @return {Promise<void>} Uma promessa que é resolvida quando o arquivo 'aos.css' é copiado para o diretório 'dist/src/css'.
  */
 gulp.task("copyCss", () => {
-  return src("src/css/aos.css")
+  return src(["src/css/aos.css", 
+    // "src/css/hystmodal.min.css"
+  ])
   .pipe(dest("dist/scorm_open/src/css"));
 });
 
@@ -214,7 +221,7 @@ gulp.task("zip", () => {
     .pipe(gulp.dest("dist"));
 });
 
-let functionsNames = [
+let functionsNames1 = [
   "clean",
   "copyHtml",
   "minifyHtml",
@@ -225,7 +232,11 @@ let functionsNames = [
   "purgecss",
   "minify-css",
   "buildImg",
-  "zip",
 ];
 // Executa de forma sequencial
-gulp.task("default", gulp.series(functionsNames));
+gulp.task("etapa-1", gulp.series(functionsNames1));
+
+let functionsNames2 = [
+  "zip",
+];
+gulp.task("etapa-2", gulp.series(functionsNames2));
