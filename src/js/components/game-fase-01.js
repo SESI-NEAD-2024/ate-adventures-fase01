@@ -52,14 +52,14 @@ export default {
           clearInterval(interval);
           console.log("LMSIsInitialized");
 
-          console.log(
-            "getScormData(FIELDS.studentId)",
-            getScormData(FIELDS.studentId)
-          );
-          console.log(
-            "getScormData(FIELDS.studentName)",
-            getScormData(FIELDS.studentName)
-          );
+          // console.log(
+          //   "getScormData(FIELDS.studentId)",
+          //   getScormData(FIELDS.studentId)
+          // );
+          // console.log(
+          //   "getScormData(FIELDS.studentName)",
+          //   getScormData(FIELDS.studentName)
+          // );
           this.loadScormData();
           this.setupGame();
         }

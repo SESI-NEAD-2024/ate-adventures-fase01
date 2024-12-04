@@ -35,8 +35,8 @@ export default {
 
 
               clearInterval(interval);
-              console.log('getScormData(FIELDS.studentId)', getScormData(FIELDS.studentId));
-              console.log('getScormData(FIELDS.studentName)', getScormData(FIELDS.studentName));
+              // console.log('getScormData(FIELDS.studentId)', getScormData(FIELDS.studentId));
+              // console.log('getScormData(FIELDS.studentName)', getScormData(FIELDS.studentName));
               // Identificador de pessoa
               this.formData.student_name = getScormData(FIELDS.studentName);
               this.formData.student_id = getScormData(FIELDS.studentId);
